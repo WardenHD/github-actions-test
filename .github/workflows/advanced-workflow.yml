@@ -8,6 +8,7 @@ jobs:
     test-advanced:
         runs-on: ubuntu-latest
         strategy:
+            fail-fast: false
             matrix:
                 version: ['98', '03', '11', '14', '17', '20', '23']
         
