@@ -1,0 +1,24 @@
+from SCons.Environment import Environment
+from SCons.Script import Return
+
+
+Import('ENVIRONMENT')
+ENVIRONMENT: Environment
+
+env: Environment = ENVIRONMENT.Clone()
+env.Append(
+    CPPPATH = [
+        env.Dir('.').srcnode(),
+        env.Dir('#/src/library').srcnode(),
+    ]
+)
+
+Import('library')
+
+objects = [
+    *env.Glob('*.cpp'),
+    library
+]
+
+program = env.Program('program', objects)
+Return('program')
